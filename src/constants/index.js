@@ -1,0 +1,3 @@
+const WAIT_INTERVAL = 1000
+
+export { WAIT_INTERVAL }
