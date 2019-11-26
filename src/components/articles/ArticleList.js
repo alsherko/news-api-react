@@ -10,7 +10,10 @@ const ArticleList = () => {
   return (
     <section className="article-list">
       {articles.map(article => (
-        <Article key={article.url} article={article} />
+        <Article
+          key={`${article.url}_${article.publishedAt}_${article.source.name}`}
+          article={article}
+        />
       ))}
     </section>
   )
