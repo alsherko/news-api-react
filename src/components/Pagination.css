@@ -1,0 +1,34 @@
+.pagination__input {
+    margin: 0 0.5rem;
+    width: 2rem;
+    font-size: 1rem;
+    padding: 0.2rem;
+    font-family: 'Montserrat', sans-serif;
+    border: 1px solid #bcbdbd;
+    border-radius: 8px;
+}
+
+.pagination__input:focus, .pagination__buttons button {
+    outline: none;
+}
+
+.pagination__buttons {
+    margin-left: 1rem;
+}
+
+.pagination__buttons button {
+    background: rgba(0, 0, 0, .05);
+    border: none;
+    box-shadow: 0 1px 3px 0 #bcbdbd, 0 0 0 1px #d4d4d5;
+    font-size: 1rem;
+    padding: 0.3rem 0.5rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.pagination__button-left {
+    border-radius: 8px 0 0 8px;
+}
+
+.pagination__button-right {
+    border-radius: 0px 8px 8px 0px;
+}
