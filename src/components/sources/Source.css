@@ -1,0 +1,18 @@
+.source {
+    text-align: center;
+    padding: 5px;
+    margin: 25px 0 10px 0;
+    box-shadow: 0 1px 3px 0 #bcbdbd, 0 0 0 1px #d4d4d5;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.source:hover {
+    background: red;
+    background: rgba(0,0,0,.05);
+}
+
+.source__category {
+    color: rgba(0, 0, 0, 0.45);
+}
