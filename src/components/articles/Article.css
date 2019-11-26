@@ -62,7 +62,12 @@
     }
 
     .article__title {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        text-align: end;
+    }
+
+    .article__description{
+        text-align: end;
     }
 
     .article__description mark {
