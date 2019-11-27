@@ -9,6 +9,7 @@ const ArticleProvider = props => {
   const [language, setLanguage] = useState('en')
   const [sortBy, setSortBy] = useState('publishedAt')
   const [page, setPage] = useState(1)
+  const [lastPage, setLastPage] = useState(1)
 
   const [isLoading, setIsLoading] = useState(false)
   const [hasErrored, setHasErrored] = useState(false)
@@ -21,8 +22,14 @@ const ArticleProvider = props => {
 
     try {
       const articleData = await fetch(url)
-      const { status, articles, message } = await articleData.json()
+      const {
+        status,
+        totalResults,
+        articles,
+        message,
+      } = await articleData.json()
       if (status === 'ok') {
+        setLastPage(Math.ceil(totalResults / PAGE_SIZE))
         setArticles(articles)
       } else {
         setHasErrored(true)
@@ -61,11 +68,14 @@ const ArticleProvider = props => {
       value={{
         sortBy,
         page,
+        lastPage,
         isLoading,
         hasErrored,
         errorMessage,
         articles,
         setSortBy,
+        language,
+        searchValue,
         setPage,
         setSearchValue,
         setSource,
