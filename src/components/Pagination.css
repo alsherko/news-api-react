@@ -32,3 +32,11 @@
 .pagination__button-right {
     border-radius: 0px 8px 8px 0px;
 }
+
+.pagination-centered {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
