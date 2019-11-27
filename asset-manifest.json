@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/news-api-react/static/css/main.3785d4dd.chunk.css",
+    "main.css": "/news-api-react/static/css/main.a590dcca.chunk.css",
     "main.js": "/news-api-react/static/js/main.cb80a9a3.chunk.js",
     "main.js.map": "/news-api-react/static/js/main.cb80a9a3.chunk.js.map",
     "runtime-main.js": "/news-api-react/static/js/runtime-main.38f06ff2.js",
@@ -8,14 +8,14 @@
     "static/js/2.53e94ff9.chunk.js": "/news-api-react/static/js/2.53e94ff9.chunk.js",
     "static/js/2.53e94ff9.chunk.js.map": "/news-api-react/static/js/2.53e94ff9.chunk.js.map",
     "index.html": "/news-api-react/index.html",
-    "precache-manifest.e03566eb853274a2011c1eeb34ac0d17.js": "/news-api-react/precache-manifest.e03566eb853274a2011c1eeb34ac0d17.js",
+    "precache-manifest.13fbfafde33d0f200d31abecdd53d281.js": "/news-api-react/precache-manifest.13fbfafde33d0f200d31abecdd53d281.js",
     "service-worker.js": "/news-api-react/service-worker.js",
-    "static/css/main.3785d4dd.chunk.css.map": "/news-api-react/static/css/main.3785d4dd.chunk.css.map"
+    "static/css/main.a590dcca.chunk.css.map": "/news-api-react/static/css/main.a590dcca.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.38f06ff2.js",
     "static/js/2.53e94ff9.chunk.js",
-    "static/css/main.3785d4dd.chunk.css",
+    "static/css/main.a590dcca.chunk.css",
     "static/js/main.cb80a9a3.chunk.js"
   ]
 }
