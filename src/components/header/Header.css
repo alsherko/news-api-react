@@ -5,15 +5,21 @@
     left: 0;
     right: 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     background-color: rgba(255, 255, 255, 1);
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
 }
 
+.header aside {
+    padding-right: 15px;
+}
+
 .header__title {
-    font-size: 1rem;
+    font-size: 1.3rem;
     flex-shrink: 0;
+    line-height: 0px;
+    padding-top: 10px
 }
 
 .header time {

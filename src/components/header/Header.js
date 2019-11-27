@@ -6,9 +6,11 @@ const Header = () => {
   const currentDate = new Date().toLocaleDateString()
   return (
     <header className="header">
-      <h1 className="header__title">News App</h1>
+      <aside>
+        <h1 className="header__title">News</h1>
+        <time dateTime={currentDate}>{currentDate}</time>
+      </aside>
       <Search />
-      <time dateTime={currentDate}>{currentDate}</time>
     </header>
   )
 }
