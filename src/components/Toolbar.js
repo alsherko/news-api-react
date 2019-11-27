@@ -5,6 +5,7 @@ import './Toolbar.css'
 const Toolbar = () => {
   const appContext = useContext(ArticleContext)
   const {
+    hasErrored,
     searchInArticles,
     searchInSources,
     setSortBy,
@@ -34,6 +35,8 @@ const Toolbar = () => {
     { key: 11, text: 'Davvisámegiella', value: 'se' },
     { key: 13, text: '中文', value: 'zh' },
   ]
+
+  if (hasErrored) return null
 
   return (
     <section className="toolbar">
