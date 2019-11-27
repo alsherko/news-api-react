@@ -1,12 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react'
 import SourceList from '../components/sources/SourceList'
+import Pagination from '../components/Pagination'
 import { ArticleContext } from '../context/ArticleContext'
 import { API, API_KEY } from '../constants'
+
+const SOURCE_PAGE_SIZE = 8
 
 const SourceContainer = () => {
   const appContext = useContext(ArticleContext)
   const { language, searchValue } = appContext
   const [sources, setSources] = useState([])
+  const [page, setPage] = useState(1)
+  const [lastPage, setLastPage] = useState(1)
   const [searchResults, setSearchResults] = useState([])
 
   const [isLoading, setIsLoading] = useState(false)
@@ -27,6 +32,7 @@ const SourceContainer = () => {
         const sourcesData = await fetch(url)
         const { sources } = await sourcesData.json()
         setSources(sources)
+        setLastPage(Math.ceil(sources.length / SOURCE_PAGE_SIZE))
       } catch (e) {
         if (e) {
           setHasErrored(true)
@@ -65,14 +71,30 @@ const SourceContainer = () => {
   if (isLoading) {
   }
 
+  const sourcesList =
+    searchValue !== undefined && searchValue.length > 0
+      ? searchResults
+      : sources
   return (
-    <SourceList
-      sources={
-        searchValue !== undefined && searchValue.length > 0
-          ? searchResults
-          : sources
-      }
-    />
+    <aside>
+      <Pagination
+        className="pagination-centered"
+        page={page}
+        pageSize={SOURCE_PAGE_SIZE}
+        lastPage={lastPage}
+        setPage={setPage}
+      />
+      <SourceList
+        sources={
+          sourcesList !== undefined
+            ? sourcesList.slice(
+                (page - 1) * SOURCE_PAGE_SIZE,
+                (page - 1) * SOURCE_PAGE_SIZE + SOURCE_PAGE_SIZE
+              )
+            : []
+        }
+      />
+    </aside>
   )
 }
 
