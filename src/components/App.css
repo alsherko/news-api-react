@@ -19,6 +19,9 @@
 
 @media (min-width: 1024px) {
     .main {
+        grid-template-areas:    "toolbar toolbar"
+                                "articles sourceContainer";
         grid-template-columns: 1fr 350px;
+        grid-template-rows: min-content 1fr;
     }
 }
