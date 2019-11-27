@@ -4,6 +4,7 @@ import Pagination from '../components/Pagination'
 import Loader from '../components/Loader'
 import { ArticleContext } from '../context/ArticleContext'
 import { API, API_KEY } from '../constants'
+import './SourceContainer.css'
 
 const SOURCE_PAGE_SIZE = 8
 
@@ -81,7 +82,7 @@ const SourceContainer = () => {
       : sources
 
   return (
-    <aside>
+    <aside className="sourceContainer">
       {!isLoading && sourceIsLoading && <Loader />}
       {!hasErrored && sourceHasErrored && (
         <Fragment>
@@ -98,16 +99,18 @@ const SourceContainer = () => {
             lastPage={lastPage}
             setPage={setPage}
           />
-          <SourceList
-            sources={
-              sourcesList !== undefined
-                ? sourcesList.slice(
-                    (page - 1) * SOURCE_PAGE_SIZE,
-                    (page - 1) * SOURCE_PAGE_SIZE + SOURCE_PAGE_SIZE
-                  )
-                : []
-            }
-          />
+          <div className="sourceList">
+            <SourceList
+              sources={
+                sourcesList !== undefined
+                  ? sourcesList.slice(
+                      (page - 1) * SOURCE_PAGE_SIZE,
+                      (page - 1) * SOURCE_PAGE_SIZE + SOURCE_PAGE_SIZE
+                    )
+                  : []
+              }
+            />
+          </div>
         </Fragment>
       )}
     </aside>

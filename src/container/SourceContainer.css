@@ -1,0 +1,22 @@
+.sourceContainer {
+    display: grid;
+    grid-template-areas: "sourceList" "sourcePagination";
+    grid-template-rows: min-content min-content;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+}
+
+.sourceContainer .pagination-centered {
+    grid-area: sourcePagination;
+}
+
+.sourceList {
+    grid-area: sourceList;
+}
+
+@media (min-width: 767px) {
+    .sourceContainer {
+        grid-template-areas: "sourcePagination" "sourceList";
+        grid-gap: 0;
+    }
+}
