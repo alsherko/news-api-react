@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { ArticleContext } from '../../context/ArticleContext'
 import { WAIT_INTERVAL } from '../../constants'
@@ -7,6 +7,7 @@ import './Search.css'
 const Search = () => {
   const appContext = useContext(ArticleContext)
   const { setSearchValue } = appContext
+  const searchInputRef = useRef(null)
   let timer = null
 
   const handleChange = event => {
@@ -18,10 +19,9 @@ const Search = () => {
   }
 
   const onSubmit = event => {
-    clearTimeout(timer)
-    const searchValue = event.target.querySelector('.search__label input')
-    setSearchValue(searchValue)
     event.preventDefault()
+    clearTimeout(timer)
+    setSearchValue(searchInputRef.current.value)
   }
 
   return (
@@ -31,6 +31,7 @@ const Search = () => {
           <label htmlFor="search" className="search__label">
             <i className="material-icons search__icon">search</i>
             <input
+              ref={searchInputRef}
               type="search"
               placeholder="Search..."
               onChange={handleChange}
