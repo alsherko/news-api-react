@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
+import { ArticleContext } from '../../context/ArticleContext'
 import { WAIT_INTERVAL } from '../../constants'
 import './Search.css'
 
-const Search = ({ setSearchValue }) => {
+const Search = () => {
+  const appContext = useContext(ArticleContext)
+  const { setSearchValue } = appContext
   let timer = null
 
   const handleChange = event => {
