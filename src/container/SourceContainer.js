@@ -9,7 +9,13 @@ const SOURCE_PAGE_SIZE = 8
 
 const SourceContainer = () => {
   const appContext = useContext(ArticleContext)
-  const { language, searchValue, isLoading, hasErrored } = appContext
+  const {
+    language,
+    searchValue,
+    isLoading,
+    hasErrored,
+    searchInSources,
+  } = appContext
   const [sources, setSources] = useState([])
   const [page, setPage] = useState(1)
   const [lastPage, setLastPage] = useState(1)
@@ -59,16 +65,18 @@ const SourceContainer = () => {
             item.description.indexOf(searchValue) > -1
         )
         setSearchResults(searchResults)
+        setLastPage(Math.ceil(searchResults.length / SOURCE_PAGE_SIZE))
       } else {
         setSearchResults([])
+        setLastPage(Math.ceil(sources.length / SOURCE_PAGE_SIZE))
       }
     }
 
-    onSearchSources()
-  }, [searchValue, sources])
+    if (searchInSources) onSearchSources()
+  }, [searchValue, sources, searchInSources])
 
   const sourcesList =
-    searchValue !== undefined && searchValue.length > 0
+    searchValue !== undefined && searchValue.length > 0 && searchInSources
       ? searchResults
       : sources
 
