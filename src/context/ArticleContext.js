@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { API, API_KEY, PAGE_SIZE } from '../constants'
 
 const ArticleContext = React.createContext()
@@ -6,7 +6,7 @@ const ArticleContext = React.createContext()
 const ArticleProvider = props => {
   const [searchValue, setSearchValue] = useState('')
   const [searchInArticles, setSearchInArticles] = useState(true)
-  const [searchInSources, setSearchInSources] = useState(true)
+  const [searchInSources, setSearchInSources] = useState(false)
 
   const [source, setSource] = useState('')
   const [language, setLanguage] = useState('en')
@@ -19,6 +19,26 @@ const ArticleProvider = props => {
   const [errorMessage, setErrorMessage] = useState('')
 
   const [articles, setArticles] = useState([])
+
+  const usePrevious = value => {
+    const ref = useRef()
+    useEffect(() => {
+      ref.current = value
+    })
+    return ref.current
+  }
+
+  const prevState = usePrevious({
+    searchValue,
+    searchInArticles,
+    searchInSources,
+  })
+
+  const {
+    searchInArticles: prevSearchInArticles,
+    searchInSources: prevSearchInSources,
+    searchValue: prevSearchValue,
+  } = prevState === undefined ? [] : prevState
 
   const fetchArticle = async url => {
     setIsLoading(true)
@@ -49,10 +69,13 @@ const ArticleProvider = props => {
   }
 
   useEffect(() => {
-    const endpoint = searchValue.trim() === '' ? 'top-headlines' : 'everything'
+    const endpoint =
+      !searchInArticles || searchValue.trim() === ''
+        ? 'top-headlines'
+        : 'everything'
     const url = new URL(`${API}${endpoint}`),
       params = {
-        q: searchValue,
+        q: searchInArticles ? searchValue : '',
         sources: source,
         language,
         sortBy,
@@ -63,8 +86,29 @@ const ArticleProvider = props => {
     Object.keys(params).forEach(key =>
       url.searchParams.append(key, params[key])
     )
+
+    if (
+      prevSearchInArticles !== undefined &&
+      prevSearchValue !== undefined &&
+      ((searchValue === '' && prevSearchInArticles !== searchInArticles) ||
+        (!searchInArticles && prevSearchValue !== searchValue) ||
+        prevSearchInSources !== searchInSources)
+    ) {
+      return
+    }
     fetchArticle(url)
-  }, [searchValue, source, language, sortBy, page])
+  }, [
+    searchValue,
+    source,
+    language,
+    sortBy,
+    page,
+    searchInArticles,
+    searchInSources,
+    prevSearchInArticles,
+    prevSearchInSources,
+    prevSearchValue,
+  ])
 
   return (
     <ArticleContext.Provider
