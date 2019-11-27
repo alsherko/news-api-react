@@ -1,0 +1,24 @@
+.main {
+    padding: 70px 1.5vw 0 1.5vw;
+    width: inherit;
+    display: grid;
+    grid-template-areas: "articles" "sourceContainer";
+    grid-template-rows: min-content min-content;
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (min-width: 767px) {
+    .main {
+        grid-template-columns: 1fr 270px;
+        grid-template-rows: max-content;
+    }
+}
+
+@media (min-width: 1024px) {
+    .main {
+        grid-template-columns: 1fr 350px;
+    }
+}
