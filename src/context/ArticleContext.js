@@ -5,6 +5,9 @@ const ArticleContext = React.createContext()
 
 const ArticleProvider = props => {
   const [searchValue, setSearchValue] = useState('')
+  const [searchInArticles, setSearchInArticles] = useState(true)
+  const [searchInSources, setSearchInSources] = useState(true)
+
   const [source, setSource] = useState('')
   const [language, setLanguage] = useState('en')
   const [sortBy, setSortBy] = useState('publishedAt')
@@ -73,6 +76,8 @@ const ArticleProvider = props => {
         hasErrored,
         errorMessage,
         articles,
+        searchInArticles,
+        searchInSources,
         setSortBy,
         language,
         searchValue,
@@ -80,6 +85,8 @@ const ArticleProvider = props => {
         setSearchValue,
         setSource,
         setLanguage,
+        setSearchInArticles,
+        setSearchInSources,
       }}
     >
       {props.children}
