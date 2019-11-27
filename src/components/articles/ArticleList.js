@@ -1,22 +1,22 @@
-import React, { useContext } from 'react'
+import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
 import Article from './Article'
-import { ArticleContext } from '../../context/ArticleContext'
-import './ArticleList.css'
 
-const ArticleList = () => {
-  const appContext = useContext(ArticleContext)
-  const { articles } = appContext
-
+const ArticleList = ({ articles }) => {
   return (
-    <section className="article-list">
+    <Fragment>
       {articles.map(article => (
         <Article
           key={`${article.url}_${article.publishedAt}_${article.source.name}`}
           article={article}
         />
       ))}
-    </section>
+    </Fragment>
   )
+}
+
+ArticleList.propTypes = {
+  articles: PropTypes.array,
 }
 
 export default ArticleList
