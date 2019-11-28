@@ -36,6 +36,7 @@ const ArticleContainer = () => {
             pageSize={PAGE_SIZE}
             lastPage={lastPage}
             setPage={setPage}
+            scrollToTop
           />
         </Fragment>
       )}

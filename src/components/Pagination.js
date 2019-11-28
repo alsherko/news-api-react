@@ -2,7 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './Pagination.css'
 
-const Pagination = ({ page, pageSize, lastPage, setPage, className }) => {
+const Pagination = ({
+  page,
+  pageSize,
+  lastPage,
+  setPage,
+  className,
+  scrollToTop,
+}) => {
   return (
     <div className={`pagination ${className}`}>
       <span>{`${pageSize} per page`}</span>
@@ -21,14 +28,20 @@ const Pagination = ({ page, pageSize, lastPage, setPage, className }) => {
       <span className="pagination__buttons">
         <button
           className="pagination__button-left"
-          onClick={() => setPage(parseInt(page) - 1)}
+          onClick={() => {
+            setPage(parseInt(page) - 1)
+            scrollToTop && window.scrollTo(0, 0)
+          }}
           disabled={page < 2}
         >
           &laquo;
         </button>
         <button
           className="pagination__button-right"
-          onClick={() => setPage(parseInt(page) + 1)}
+          onClick={() => {
+            setPage(parseInt(page) + 1)
+            scrollToTop && window.scrollTo(0, 0)
+          }}
           disabled={page > lastPage - 1}
         >
           &raquo;
@@ -44,6 +57,7 @@ Pagination.propTypes = {
   lastPage: PropTypes.number,
   setPage: PropTypes.func,
   className: PropTypes.string,
+  scrollToTop: PropTypes.bool,
 }
 
 export default Pagination
